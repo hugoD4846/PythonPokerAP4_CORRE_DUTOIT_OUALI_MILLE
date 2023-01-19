@@ -2,15 +2,15 @@ import enum
 from card_deck import Card, Deck, Color, Value
 
 class Combinaison(enum.Enum):
-    SUITE_COULEUR=9
-    CARRE=8
-    FULL=7
-    COULEUR=6
+    SUITE_COULEUR=9 #
+    CARRE=8 #
+    FULL=7 #
+    COULEUR=6 #
     SUITE=5
-    BRELAN=4
-    DOUBLE_PAIRES=3
-    PAIRE=2
-    RIEN=1
+    BRELAN=4 #
+    DOUBLE_PAIRES=3 #
+    PAIRE=2 #
+    RIEN=1 #
 
 
 SAMPLE_RESULTS = (
