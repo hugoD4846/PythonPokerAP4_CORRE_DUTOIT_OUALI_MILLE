@@ -32,6 +32,77 @@ class TestCombinations(unittest.TestCase):
         self.assertEqual(find_combinaisons(
             hand), (Combinaison.SUITE_COULEUR, (Color.P, Value.VALET)))
 
+    def test_find_combinaison_double_paire(self):
+        # TEST WITH 2 PAIRS (KING and THREE, with a 5 as highest card)
+        hand = [Card(Value.TROIS, Color.C), Card(Value.TROIS, Color.P), Card(Value.ROI, Color.P),
+                Card(Value.ROI, Color.C), Card(
+            Value.CINQ, Color.P), Card(Value.QUATRE, Color.C),
+            Card(Value.DEUX, Color.K)]
+        self.assertEqual(find_combinaisons(
+            hand),    (Combinaison.DOUBLE_PAIRES, (Value.ROI, Value.TROIS, Value.CINQ)))
+         # TEST WITH 2 PAIRS (AS and QUEEN, with a 10 as highest card)
+        hand = [Card(Value.AS, Color.C), Card(Value.AS, Color.P), Card(Value.DAME, Color.P),
+                Card(Value.DAME, Color.C), Card(
+            Value.DIX, Color.P), Card(Value.QUATRE, Color.C),
+            Card(Value.DEUX, Color.K)]
+        self.assertEqual(find_combinaisons(
+            hand),    (Combinaison.DOUBLE_PAIRES, (Value.AS, Value.DAME, Value.DIX)))
+         # TEST WITH 2 PAIRS (TWO and SEVEN, with an AS as highest card)
+        hand = [Card(Value.AS, Color.C), Card(Value.DEUX, Color.P), Card(Value.DEUX, Color.P),
+                Card(Value.SEPT, Color.C), Card(
+            Value.SEPT, Color.P), Card(Value.VALET, Color.C),
+            Card(Value.HUIT, Color.K)]
+        self.assertEqual(find_combinaisons(
+            hand),    (Combinaison.DOUBLE_PAIRES, (Value.SEPT, Value.DEUX, Value.AS)))
+        
+    def test_find_combinaison_paire(self):
+        # TEST WITH A VALID PAIR OF SEVEN
+        hand = [Card(Value.SEPT, Color.C), Card(Value.SEPT, Color.P), Card(Value.AS, Color.P),
+                Card(Value.DIX, Color.C), Card(
+            Value.VALET, Color.P), Card(Value.QUATRE, Color.C),
+            Card(Value.DEUX, Color.K)]
+        self.assertEqual(find_combinaisons(
+            hand),    (Combinaison.PAIRE, (Value.SEPT, Value.AS, Value.VALET, Value.DIX)))
+        # TEST WITH A VALID PAIR OF AS
+        hand = [Card(Value.AS, Color.C), Card(Value.AS, Color.P), Card(Value.ROI, Color.P),
+                Card(Value.DIX, Color.C), Card(
+            Value.VALET, Color.P), Card(Value.QUATRE, Color.C),
+            Card(Value.DEUX, Color.K)]
+        self.assertEqual(find_combinaisons(
+            hand),    (Combinaison.PAIRE, (Value.AS, Value.ROI, Value.VALET, Value.DIX)))
+        # TEST WITH A VALID PAIR OF DIX
+        hand = [Card(Value.DIX, Color.C), Card(Value.DIX, Color.P), Card(Value.ROI, Color.P),
+                Card(Value.DAME, Color.C), Card(
+            Value.VALET, Color.P), Card(Value.TROIS, Color.C),
+            Card(Value.DEUX, Color.K)]
+        self.assertEqual(find_combinaisons(
+            hand),    (Combinaison.PAIRE, (Value.DIX, Value.ROI, Value.DAME, Value.VALET)))
+    
+        
+    def test_find_combinaison_brelan(self):
+        # TEST WITH A THREE OF SEVEN WITH ACE AND KING AS HIGHEST CARDS
+        hand = [Card(Value.SEPT, Color.C), Card(Value.SEPT, Color.P), Card(Value.SEPT, Color.P),
+                Card(Value.AS, Color.C), Card(
+            Value.ROI, Color.P), Card(Value.VALET, Color.C),
+            Card(Value.DEUX, Color.K)]
+        self.assertEqual(find_combinaisons(
+            hand),   (Combinaison.BRELAN, (Value.SEPT, Value.AS, Value.ROI)))
+        # TEST WITH A THREE OF A KIND  OF JACK WITH SEVEN AND FOUR AS HIGHEST CARDS
+        hand = [Card(Value.VALET, Color.C), Card(Value.VALET, Color.P), Card(Value.QUATRE, Color.P),
+                Card(Value.SEPT, Color.C), Card(
+            Value.VALET, Color.P), Card(Value.DEUX, Color.C),
+            Card(Value.TROIS, Color.K)]
+        self.assertEqual(find_combinaisons(
+            hand),     (Combinaison.BRELAN, (Value.VALET, Value.SEPT, Value.QUATRE)))
+         # TEST WITH A THREE OF A KIND  OF TWO WITH JACK AND SEVEN AS HIGHEST CARDS
+        hand = [Card(Value.DEUX, Color.C), Card(Value.DEUX, Color.P), Card(Value.QUATRE, Color.P),
+                Card(Value.SEPT, Color.C), Card(
+            Value.VALET, Color.P), Card(Value.DEUX, Color.C),
+            Card(Value.TROIS, Color.K)]
+        self.assertEqual(find_combinaisons(
+            hand),     (Combinaison.BRELAN, (Value.DEUX, Value.VALET, Value.SEPT)))
+     
+        
     def test_is_flush(self):
         # TEST WITH FLUSH
         values = [Color.C, Color.C, Color.C,

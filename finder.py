@@ -11,9 +11,6 @@ def find_combinaisons(hand):
 
     if is_flush(colors_count) and is_straight(values):
         flush_color = max(colors_count, key=colors_count.get)
-        print(colors)
-        print(colors_count)
-        print(hand)
         return (Combinaison.SUITE_COULEUR, (Color(flush_color), Value(max(values))))
     elif is_four_of_a_kind(values_count):
         four_of_a_kind_value = max(
@@ -37,26 +34,30 @@ def find_combinaisons(hand):
     elif is_three_of_a_kind(values_count):
         three_of_a_kind_value = max(
             [value for value in values_count.keys() if values_count[value] == 3])
+        tuple_values = [Value(three_of_a_kind_value)]
         remaining_values = sorted(
             [value for value in values if value != three_of_a_kind_value], reverse=True)
-        return (Combinaison.BRELAN, three_of_a_kind_value, remaining_values[:2])
+        tuple_values = tuple_values + [Value(remaining_values[0]), Value(remaining_values[1])]
+        return (Combinaison.BRELAN, tuple(tuple_values))
     elif is_two_pairs(values_count):
         pairs = []
         for value, count in values_count.items():
             if count == 2:
                 pairs.append(value)
         pairs.sort(reverse=True)
-        remaining_card = None
+        tuple_of_values = [Value(pairs) for pairs in pairs[:3]] # 2 pairs AS Value
         for value, count in values_count.items():
             if count != 2:
-                remaining_card = value
+                tuple_of_values.append(Value(value)) #adding remaining card to the tuple
                 break
-        return (Combinaison.DOUBLE_PAIRES, pairs, remaining_card)
+        return (Combinaison.DOUBLE_PAIRES, (tuple(tuple_of_values)))
     elif is_pair(values_count):
         pair_value = [k for k, v in values_count.items() if v == 2]
         other_values = sorted(
             [k for k, v in values_count.items() if v != 2], reverse=True)
-        return (Combinaison.PAIRE, pair_value + other_values)
+        tuple_of_values = [Value(high_cards) for high_cards in other_values[:3]] # 3 highest cards
+        tuple_of_values.insert(0,Value(pair_value[0])) #adding pair value to the tuple
+        return (Combinaison.PAIRE, (  tuple( tuple_of_values) ))
     else:
         return (Combinaison.RIEN, sorted(values, reverse=True))
 
