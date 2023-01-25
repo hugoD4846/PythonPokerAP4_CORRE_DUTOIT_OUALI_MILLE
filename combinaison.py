@@ -21,7 +21,7 @@ SAMPLE_RESULTS = (
             (Combinaison.SUITE, (Value.UN)),
             (Combinaison.COULEUR, (Color.K, Value.VALET, Value.HUIT, Value.SIX, Value.QUATRE, Value.DEUX)),
             (Combinaison.BRELAN, (Value.VALET, Value.QUATRE, Value.DEUX)),
-            (Combinaison.DOUBLE_PAIRES, (Value.TROIS, Value.ROI, Value.CINQ)),
+            (Combinaison.DOUBLE_PAIRES, (Value.ROI, Value.TROIS, Value.CINQ)),
             (Combinaison.PAIRE, (Value.ROI, Value.AS, Value.DIX, Value.TROIS)),
             (Combinaison.RIEN, (Value.AS, Value.DAME, Value.CINQ, Value.TROIS, Value.DEUX)),
             )
