@@ -24,13 +24,53 @@ class TestCombinations(unittest.TestCase):
         expected_output = False
         assert is_two_pairs(values_dict) == expected_output
 
-    def test_quinte_flush(self):
+    def test_find_combinaison_quinte_flush(self):
         hand = [Card(Value.SEPT, Color.P), Card(Value.HUIT, Color.P), Card(Value.NEUF, Color.P),
                 Card(Value.DIX, Color.P), Card(
             Value.VALET, Color.P), Card(Value.QUATRE, Color.C),
             Card(Value.DIX, Color.K)]
         self.assertEqual(find_combinaisons(
             hand), (Combinaison.SUITE_COULEUR, (Color.P, Value.VALET)))
+
+    def test_find_combinaison_square(self):
+        hand = [Card(Value.NEUF, Color.P), Card(Value.NEUF, Color.K), Card(Value.NEUF, Color.C),
+                Card(Value.NEUF, Color.T), Card(
+            Value.VALET, Color.P), Card(Value.AS, Color.C),
+            Card(Value.DIX, Color.K)]
+        self.assertEqual(find_combinaisons(
+            hand), (Combinaison.CARRE, (Value.NEUF, Value.AS)))
+
+    def test_find_combinaison_full(self):
+        hand = [Card(Value.SEPT, Color.P), Card(Value.SEPT, Color.K), Card(Value.SEPT, Color.C),
+                Card(Value.ROI, Color.T), Card(
+            Value.ROI, Color.P), Card(Value.AS, Color.C),
+            Card(Value.DIX, Color.K)]
+        self.assertEqual(find_combinaisons(
+            hand), (Combinaison.FULL, (Value.SEPT, Value.ROI)))
+
+    def test_find_combinaison_color(self):
+        hand = [Card(Value.VALET, Color.K), Card(Value.QUATRE, Color.K), Card(Value.SIX, Color.K),
+                Card(Value.HUIT, Color.K), Card(
+            Value.DEUX, Color.K), Card(Value.AS, Color.C),
+            Card(Value.DIX, Color.C)]
+        self.assertEqual(find_combinaisons(
+            hand), (Combinaison.COULEUR, (Color.K, Value.VALET, Value.HUIT, Value.SIX, Value.QUATRE, Value.DEUX)))
+
+    def test_find_combinaison_straight(self):
+        hand = [Card(Value.AS, Color.K), Card(Value.DEUX, Color.K), Card(Value.TROIS, Color.T),
+                Card(Value.QUATRE, Color.P), Card(
+            Value.CINQ, Color.K), Card(Value.AS, Color.C),
+            Card(Value.DIX, Color.C)]
+        self.assertEqual(find_combinaisons(
+            hand), (Combinaison.SUITE, (Value.AS)))
+
+    def test_find_combinaison_rien(self):
+        hand = [Card(Value.AS, Color.K), Card(Value.VALET, Color.K), Card(Value.SEPT, Color.T),
+                Card(Value.NEUF, Color.P), Card(
+            Value.DEUX, Color.K), Card(Value.CINQ, Color.C),
+            Card(Value.TROIS, Color.C)]
+        self.assertEqual(find_combinaisons(
+            hand), (Combinaison.RIEN, (Value.AS, Value.VALET, Value.NEUF, Value.SEPT, Value.CINQ)))
 
     def test_is_flush(self):
         # TEST WITH FLUSH

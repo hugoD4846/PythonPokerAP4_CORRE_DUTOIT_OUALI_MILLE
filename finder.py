@@ -11,29 +11,28 @@ def find_combinaisons(hand):
 
     if is_flush(colors_count) and is_straight(values):
         flush_color = max(colors_count, key=colors_count.get)
-        print(colors)
-        print(colors_count)
-        print(hand)
         return (Combinaison.SUITE_COULEUR, (Color(flush_color), Value(max(values))))
     elif is_four_of_a_kind(values_count):
         four_of_a_kind_value = max(
             [value for value in values_count.keys() if values_count[value] == 4])
-        remaining_card_value = min(
+        remaining_card_value = max(
             [value for value in values if value != four_of_a_kind_value])
-        return (Combinaison.CARRE, four_of_a_kind_value, remaining_card_value)
+        return (Combinaison.CARRE, (Value(four_of_a_kind_value), Value(remaining_card_value)))
     elif is_full(values_count):
         three_of_a_kind_value = max(
             [value for value in values_count.keys() if values_count[value] == 3])
         pair_value = min(
             [value for value in values_count.keys() if values_count[value] == 2])
-        return (Combinaison.FULL, three_of_a_kind_value, pair_value)
+        return (Combinaison.FULL, (Value(three_of_a_kind_value), Value(pair_value)))
     elif is_flush(colors_count):
         flush_color = max(colors_count, key=colors_count.get)
         flush_values = sorted([value for value in values if colors[values.index(
             value)] == flush_color], reverse=True)
-        return (Combinaison.COULEUR, flush_color, flush_values)
+        values_flush = [Value(value) for value in flush_values]
+        values_flush.insert(0, Color(flush_color))
+        return (Combinaison.COULEUR, tuple(values_flush))
     elif is_straight(values):
-        return (Combinaison.SUITE, max(values))
+        return (Combinaison.SUITE, Value(max(values)))
     elif is_three_of_a_kind(values_count):
         three_of_a_kind_value = max(
             [value for value in values_count.keys() if values_count[value] == 3])
@@ -58,7 +57,10 @@ def find_combinaisons(hand):
             [k for k, v in values_count.items() if v != 2], reverse=True)
         return (Combinaison.PAIRE, pair_value + other_values)
     else:
-        return (Combinaison.RIEN, sorted(values, reverse=True))
+        values_nothing = sorted(values, reverse=True)
+        tmp = [Value(value) for value in values_nothing[:5]]
+        print(tmp)
+        return (Combinaison.RIEN, tuple(tmp))
 
 
 def is_flush(colors_count):
@@ -73,8 +75,8 @@ def is_four_of_a_kind(values_count):
 
 def is_full(values_count):
     values_count_list = list(values_count.values())
-    ## left part checks if its a full with a 3 of a kind and a pair, second part checks if hand contains two three of a kind, which corresponds to a full too!
-    return ((3 in values_count_list) and (2 in values_count_list) or values_count_list.count(3)==2) 
+    # left part checks if its a full with a 3 of a kind and a pair, second part checks if hand contains two three of a kind, which corresponds to a full too!
+    return ((3 in values_count_list) and (2 in values_count_list) or values_count_list.count(3) == 2)
 
 
 def is_three_of_a_kind(values_count):
