@@ -75,10 +75,10 @@ class TestCombinations(unittest.TestCase):
         expected_output = False
         assert is_full(values_dict) == expected_output
         # TEST WITH 2 THREE OF A KIND
-        # values = [14, 14, 14, 4, 4, 5,4]
-        # values_dict = dict(collections.Counter(values))
-        # expected_output = True
-        # assert is_full(values_dict) == expected_output
+        values = [14, 14, 14, 4, 4, 5, 4]
+        values_dict = dict(collections.Counter(values))
+        expected_output = True
+        assert is_full(values_dict) == expected_output
 
     def test_is_four_of_a_kind(self):
         # TEST WITH A FOUR OF A KIND
