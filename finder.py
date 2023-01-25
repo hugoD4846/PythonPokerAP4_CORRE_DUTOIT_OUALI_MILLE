@@ -70,7 +70,8 @@ def is_four_of_a_kind(values_count):
 
 def is_full(values_count):
     values_count_list = list(values_count.values())
-    return (3 in values_count_list) and (2 in values_count_list)
+    ## left part checks if its a full with a 3 of a kind and a pair, second part checks if hand contains two three of a kind, which corresponds to a full too!
+    return ((3 in values_count_list) and (2 in values_count_list) or values_count_list.count(3)==2) 
 
 
 def is_three_of_a_kind(values_count):

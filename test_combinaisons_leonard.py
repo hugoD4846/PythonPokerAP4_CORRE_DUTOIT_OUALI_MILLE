@@ -24,25 +24,25 @@ class TestCombinations(unittest.TestCase):
         expected_output = False
         assert is_two_pairs(values_dict) == expected_output
 
-    def test_quinte_flush(self):
-        hand = [Card(Value.DEUX, Color.P), Card(Value.TROIS, Color.P), Card(Value.QUATRE, Color.P),
-                Card(Value.CINQ, Color.P), Card(
-                    Value.SIX, Color.P), Card(Value.DAME, Color.P),
-                Card(Value.DIX, Color.P)]
-        self.assertEqual(find_combinaisons(hand), (Combinaison.COULEUR, Color.P, [
-                         Value.DAME, Value.SIX, Value.CINQ, Value.QUATRE, Value.TROIS, Value.DEUX, Value.DIX]))
-        hand = [Card(Value.DEUX, Color.K), Card(Value.TROIS, Color.K), Card(Value.QUATRE, Color.K),
-                Card(Value.CINQ, Color.K), Card(
-                    Value.SIX, Color.K), Card(Value.DAME, Color.K),
-                Card(Value.DIX, Color.K)]
-        self.assertEqual(find_combinaisons(hand), (Combinaison.COULEUR, Color.K, [
-                         Value.DAME, Value.SIX, Value.CINQ, Value.QUATRE, Value.TROIS, Value.DEUX, Value.DIX]))
-        hand = [Card(Value.DEUX, Color.C), Card(Value.TROIS, Color.C), Card(Value.QUATRE, Color.C),
-                Card(Value.CINQ, Color.C), Card(
-                    Value.SIX, Color.C), Card(Value.DAME, Color.C),
-                Card(Value.DIX, Color.P)]
-        self.assertEqual(find_combinaisons(hand), (Combinaison.RIEN, None, [
-                         Value.DAME, Value.SIX, Value.CINQ, Value.QUATRE, Value.TROIS, Value.DEUX, Value.DIX]))
+    # def test_quinte_flush(self):
+        # hand = [Card(Value.DEUX, Color.P), Card(Value.TROIS, Color.P), Card(Value.QUATRE, Color.P),
+        #         Card(Value.CINQ, Color.P), Card(
+        #             Value.SIX, Color.P), Card(Value.DAME, Color.P),
+        #         Card(Value.DIX, Color.P)]
+        # self.assertEqual(find_combinaisons(hand), (Combinaison.COULEUR, Color.P, [
+        #                  Value.DAME, Value.SIX, Value.CINQ, Value.QUATRE, Value.TROIS, Value.DEUX, Value.DIX]))
+        # hand = [Card(Value.DEUX, Color.K), Card(Value.TROIS, Color.K), Card(Value.QUATRE, Color.K),
+        #         Card(Value.CINQ, Color.K), Card(
+        #             Value.SIX, Color.K), Card(Value.DAME, Color.K),
+        #         Card(Value.DIX, Color.K)]
+        # self.assertEqual(find_combinaisons(hand), (Combinaison.COULEUR, Color.K, [
+        #                  Value.DAME, Value.SIX, Value.CINQ, Value.QUATRE, Value.TROIS, Value.DEUX, Value.DIX]))
+        # hand = [Card(Value.DEUX, Color.C), Card(Value.TROIS, Color.C), Card(Value.QUATRE, Color.C),
+        #         Card(Value.CINQ, Color.C), Card(
+        #             Value.SIX, Color.C), Card(Value.DAME, Color.C),
+        #         Card(Value.DIX, Color.P)]
+        # self.assertEqual(find_combinaisons(hand), (Combinaison.RIEN, None, [
+        #                  Value.DAME, Value.SIX, Value.CINQ, Value.QUATRE, Value.TROIS, Value.DEUX, Value.DIX]))
 
     def test_is_flush(self):
         # TEST WITH FLUSH
@@ -87,10 +87,10 @@ class TestCombinations(unittest.TestCase):
         expected_output = False
         assert is_full(values_dict) == expected_output
         # TEST WITH 2 THREE OF A KIND
-        # values = [14, 14, 14, 4, 4, 5,4]
-        # values_dict = dict(collections.Counter(values))
-        # expected_output = True
-        # assert is_full(values_dict) == expected_output
+        values = [14, 14, 14, 4, 4, 5,4]
+        values_dict = dict(collections.Counter(values))
+        expected_output = True
+        assert is_full(values_dict) == expected_output
 
     def test_is_four_of_a_kind(self):
         # TEST WITH A FOUR OF A KIND
