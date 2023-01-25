@@ -25,24 +25,12 @@ class TestCombinations(unittest.TestCase):
         assert is_two_pairs(values_dict) == expected_output
 
     def test_quinte_flush(self):
-        hand = [Card(Value.DEUX, Color.P), Card(Value.TROIS, Color.P), Card(Value.QUATRE, Color.P),
-                Card(Value.CINQ, Color.P), Card(
-                    Value.SIX, Color.P), Card(Value.DAME, Color.P),
-                Card(Value.DIX, Color.P)]
-        self.assertEqual(find_combinaisons(hand), (Combinaison.COULEUR, Color.P, [
-                         Value.DAME, Value.SIX, Value.CINQ, Value.QUATRE, Value.TROIS, Value.DEUX, Value.DIX]))
-        hand = [Card(Value.DEUX, Color.K), Card(Value.TROIS, Color.K), Card(Value.QUATRE, Color.K),
-                Card(Value.CINQ, Color.K), Card(
-                    Value.SIX, Color.K), Card(Value.DAME, Color.K),
-                Card(Value.DIX, Color.K)]
-        self.assertEqual(find_combinaisons(hand), (Combinaison.COULEUR, Color.K, [
-                         Value.DAME, Value.SIX, Value.CINQ, Value.QUATRE, Value.TROIS, Value.DEUX, Value.DIX]))
-        hand = [Card(Value.DEUX, Color.C), Card(Value.TROIS, Color.C), Card(Value.QUATRE, Color.C),
-                Card(Value.CINQ, Color.C), Card(
-                    Value.SIX, Color.C), Card(Value.DAME, Color.C),
-                Card(Value.DIX, Color.P)]
-        self.assertEqual(find_combinaisons(hand), (Combinaison.RIEN, None, [
-                         Value.DAME, Value.SIX, Value.CINQ, Value.QUATRE, Value.TROIS, Value.DEUX, Value.DIX]))
+        hand = [Card(Value.SEPT, Color.P), Card(Value.HUIT, Color.P), Card(Value.NEUF, Color.P),
+                Card(Value.DIX, Color.P), Card(
+            Value.VALET, Color.P), Card(Value.QUATRE, Color.C),
+            Card(Value.DIX, Color.K)]
+        self.assertEqual(find_combinaisons(
+            hand), (Combinaison.SUITE_COULEUR, (Color.P, Value.VALET)))
 
     def test_is_flush(self):
         # TEST WITH FLUSH
@@ -159,6 +147,16 @@ class TestCombinations(unittest.TestCase):
         # Test with duplicate cards
         values = [2, 3, 4, 5, 2, 9, 11]
         expected_output = False
+        assert is_straight(values) == expected_output
+
+        # Test with duplicate cards
+        values = [7, 8, 9, 10, 11, 4, 13]
+        expected_output = True
+        assert is_straight(values) == expected_output
+
+        # Test with duplicate cards
+        values = [10, 11, 12, 13, 13, 14, 13]
+        expected_output = True
         assert is_straight(values) == expected_output
 
 

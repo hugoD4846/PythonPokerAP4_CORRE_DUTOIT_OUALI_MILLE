@@ -11,7 +11,10 @@ def find_combinaisons(hand):
 
     if is_flush(colors_count) and is_straight(values):
         flush_color = max(colors_count, key=colors_count.get)
-        return (Combinaison.SUITE_COULEUR, flush_color, max(values))
+        print(colors)
+        print(colors_count)
+        print(hand)
+        return (Combinaison.SUITE_COULEUR, (Color(flush_color), Value(max(values))))
     elif is_four_of_a_kind(values_count):
         four_of_a_kind_value = max(
             [value for value in values_count.keys() if values_count[value] == 4])
@@ -96,10 +99,14 @@ def is_straight(values):
     if len(values_set) < 5:
         return False
     if 14 in values_set:
-        values_set.remove(14)
         values_set.add(1)
     min_value = min(values_set)
-    for i in range(min_value, min_value+5):
-        if i not in values_set:
-            return False
-    return True
+    # print(values_set)
+    for j in values_set:
+        test = True
+        for i in range(j+1, j + 5):
+            if i not in values_set:
+                test = False
+        if test:
+            return True
+    return test
