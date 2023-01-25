@@ -4,34 +4,58 @@ import collections
 
 
 def find_combinaisons(hand):
-    values = [card._value for card in hand]
-    values_count = collections.Counter(values)
-    values_count = dict(sorted(values_count.items(),
-                        key=lambda item: item[1], reverse=True))
-    values = sorted(values, key=lambda value: value.value, reverse=True)
-    color = [card._color for card in hand]
-    color_count = collections.Counter(color)
-    color_count = dict(
-        sorted(color_count.items(), key=lambda item: item[1], reverse=True))
-    color = sorted(color, key=lambda color: color.name, reverse=True)
-    if is_flush(color_count) and is_straight(values):
-        return (Combinaison.SUITE_COULEUR, max(values).value, color[0])
+    values = [card._value.value for card in hand]
+    colors = [card._color.value for card in hand]
+    values_count = dict(collections.Counter(values))
+    colors_count = dict(collections.Counter(colors))
+
+    if is_flush(colors_count) and is_straight(values):
+        flush_color = max(colors_count, key=colors_count.get)
+        return (Combinaison.SUITE_COULEUR, flush_color, max(values))
     elif is_four_of_a_kind(values_count):
-        return (Combinaison.CARRE, [value for value, count in values_count.items() if count == 4][0], [value for value, count in values_count.items() if count == 1][0])
+        four_of_a_kind_value = max(
+            [value for value in values_count.keys() if values_count[value] == 4])
+        remaining_card_value = min(
+            [value for value in values if value != four_of_a_kind_value])
+        return (Combinaison.CARRE, four_of_a_kind_value, remaining_card_value)
     elif is_full(values_count):
-        return (Combinaison.FULL, [value for value, count in values_count.items() if count == 3][0], [value for value, count in values_count.items() if count == 2][0])
-    elif is_flush(color_count):
-        return (Combinaison.COULEUR, color[0], [value.value for value in values])
+        three_of_a_kind_value = max(
+            [value for value in values_count.keys() if values_count[value] == 3])
+        pair_value = min(
+            [value for value in values_count.keys() if values_count[value] == 2])
+        return (Combinaison.FULL, three_of_a_kind_value, pair_value)
+    elif is_flush(colors_count):
+        flush_color = max(colors_count, key=colors_count.get)
+        flush_values = sorted([value for value in values if colors[values.index(
+            value)] == flush_color], reverse=True)
+        return (Combinaison.COULEUR, flush_color, flush_values)
     elif is_straight(values):
-        return (Combinaison.SUITE, max(values).value)
-    elif is_brelan(values_count):
-        return (Combinaison.BRELAN, [value for value, count in values_count.items() if count == 3][0], [value for value, count in values_count.items() if count != 3][:2])
-    elif is_double_paires(values_count):
-        return (Combinaison.DOUBLE_PAIRES, [value for value, count in values_count.items() if count == 2][:2], [value for value, count in values_count.items() if count != 2][0])
-    elif is_paire(values_count):
-        return (Combinaison.PAIRE, [value for value, count in values_count.items() if count == 2][0], [value for value, count in values_count.items() if count != 2])
+        return (Combinaison.SUITE, max(values))
+    elif is_three_of_a_kind(values_count):
+        three_of_a_kind_value = max(
+            [value for value in values_count.keys() if values_count[value] == 3])
+        remaining_values = sorted(
+            [value for value in values if value != three_of_a_kind_value], reverse=True)
+        return (Combinaison.BRELAN, three_of_a_kind_value, remaining_values[:2])
+    elif is_two_pairs(values_count):
+        pairs = []
+        for value, count in values_count.items():
+            if count == 2:
+                pairs.append(value)
+        pairs.sort(reverse=True)
+        remaining_card = None
+        for value, count in values_count.items():
+            if count != 2:
+                remaining_card = value
+                break
+        return (Combinaison.DOUBLE_PAIRES, pairs, remaining_card)
+    elif is_pair(values_count):
+        pair_value = [k for k, v in values_count.items() if v == 2]
+        other_values = sorted(
+            [k for k, v in values_count.items() if v != 2], reverse=True)
+        return (Combinaison.PAIRE, pair_value + other_values)
     else:
-        return (Combinaison.RIEN, [value.value for value in values])
+        return (Combinaison.RIEN, sorted(values, reverse=True))
 
 
 def is_flush(colors_count):
@@ -56,7 +80,7 @@ def is_three_of_a_kind(values_count):
 
 def is_two_pairs(values_count):
     values_count_list = list(values_count.values())
-    return (values_count_list.count(2) == 2)
+    return (values_count_list.count(2) >= 2)
 
 
 def is_pair(values):
