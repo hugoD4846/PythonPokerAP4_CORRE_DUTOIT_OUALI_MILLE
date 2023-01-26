@@ -72,7 +72,7 @@ class TestCombinations(unittest.TestCase):
         self.assertEqual(find_combinaisons(
             hand), (Combinaison.RIEN, (Value.AS, Value.VALET, Value.NEUF, Value.SEPT, Value.CINQ)))
 
-    def test_find_combinaison_double_paire(self):
+    def test_find_combinaison_two_pairs(self):
         # TEST WITH 2 PAIRS (KING and THREE, with a 5 as highest card)
         hand = [Card(Value.TROIS, Color.C), Card(Value.TROIS, Color.P), Card(Value.ROI, Color.P),
                 Card(Value.ROI, Color.C), Card(
