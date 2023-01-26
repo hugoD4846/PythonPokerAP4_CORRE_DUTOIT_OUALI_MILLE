@@ -2180,3 +2180,15 @@ INFO:root:is_straight, values: [6, 7, 6, 13, 7, 11, 12]
 INFO:root:is_three_of_a_kind, values_count: {6: 2, 7: 2, 13: 1, 11: 1, 12: 1}
 INFO:root:is_two_pairs, values_count: {6: 2, 7: 2, 13: 1, 11: 1, 12: 1}
 INFO:root:get_double_pair, values_count: {6: 2, 7: 2, 13: 1, 11: 1, 12: 1}
+INFO:root:Starting up
+INFO:root:Logging is working
+INFO:root:find_combinaisons, hand: [<(3,T) at 0x29542a63bb0>, <(5,T) at 0x29542a63a00>, <(R,T) at 0x29542a63af0>, <(8,C) at 0x29542ab05b0>, <(6,T) at 0x29542a637c0>, <(A,P) at 0x29542ab0310>, <(7,K) at 0x29542ab0a30>]
+INFO:root:is_flush, colors_count: {'trefle': 4, 'coeur': 1, 'pique': 1, 'carreau': 1}
+INFO:root:is_four_of_a_kind, values_count: {3: 1, 5: 1, 13: 1, 8: 1, 6: 1, 14: 1, 7: 1}
+INFO:root:is_full, values_count: {3: 1, 5: 1, 13: 1, 8: 1, 6: 1, 14: 1, 7: 1}
+INFO:root:is_flush, colors_count: {'trefle': 4, 'coeur': 1, 'pique': 1, 'carreau': 1}
+INFO:root:is_straight, values: [3, 5, 13, 8, 6, 14, 7]
+INFO:root:is_three_of_a_kind, values_count: {3: 1, 5: 1, 13: 1, 8: 1, 6: 1, 14: 1, 7: 1}
+INFO:root:is_two_pairs, values_count: {3: 1, 5: 1, 13: 1, 8: 1, 6: 1, 14: 1, 7: 1}
+INFO:root:is_pair, values: {3: 1, 5: 1, 13: 1, 8: 1, 6: 1, 14: 1, 7: 1}
+INFO:root:get_highest_cards, values: [3, 5, 13, 8, 6, 14, 7]
