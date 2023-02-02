@@ -2192,3 +2192,47 @@ INFO:root:is_three_of_a_kind, values_count: {3: 1, 5: 1, 13: 1, 8: 1, 6: 1, 14: 
 INFO:root:is_two_pairs, values_count: {3: 1, 5: 1, 13: 1, 8: 1, 6: 1, 14: 1, 7: 1}
 INFO:root:is_pair, values: {3: 1, 5: 1, 13: 1, 8: 1, 6: 1, 14: 1, 7: 1}
 INFO:root:get_highest_cards, values: [3, 5, 13, 8, 6, 14, 7]
+INFO:root:Starting up
+INFO:root:Logging is working
+INFO:root:find_combinaisons, hand: [<(2,C) at 0x20fa64d5ed0>, <(7,C) at 0x20fa64d5cf0>, <(4,T) at 0x20fa64d6e30>, <(5,C) at 0x20fa64d5db0>, <(7,T) at 0x20fa64d6e00>, <(8,K) at 0x20fa64d57b0>, <(10,P) at 0x20fa64d64d0>]
+INFO:root:is_flush, colors_count: {'coeur': 3, 'trefle': 2, 'carreau': 1, 'pique': 1}
+INFO:root:is_four_of_a_kind, values_count: {2: 1, 7: 2, 4: 1, 5: 1, 8: 1, 10: 1}
+INFO:root:is_full, values_count: {2: 1, 7: 2, 4: 1, 5: 1, 8: 1, 10: 1}
+INFO:root:is_flush, colors_count: {'coeur': 3, 'trefle': 2, 'carreau': 1, 'pique': 1}
+INFO:root:is_straight, values: [2, 7, 4, 5, 7, 8, 10]
+INFO:root:is_three_of_a_kind, values_count: {2: 1, 7: 2, 4: 1, 5: 1, 8: 1, 10: 1}
+INFO:root:is_two_pairs, values_count: {2: 1, 7: 2, 4: 1, 5: 1, 8: 1, 10: 1}
+INFO:root:is_pair, values: {2: 1, 7: 2, 4: 1, 5: 1, 8: 1, 10: 1}
+INFO:root:get_pair, values_count: {2: 1, 7: 2, 4: 1, 5: 1, 8: 1, 10: 1}
+INFO:root:Starting up
+INFO:root:Logging is working
+INFO:root:find_combinaisons, hand: [<(4,P) at 0x1d8a4506800>, <(V,P) at 0x1d8a4505ff0>, <(R,K) at 0x1d8a4505570>, <(7,P) at 0x1d8a4506590>, <(9,P) at 0x1d8a45064d0>, <(3,K) at 0x1d8a4505930>, <(5,T) at 0x1d8a4506bc0>]
+INFO:root:Starting up
+INFO:root:Logging is working
+INFO:root:find_combinaisons, hand: [<(8,K) at 0x22445c057b0>, <(9,C) at 0x22445c05c30>, <(V,T) at 0x22445c06b90>, <(8,C) at 0x22445c05c90>, <(6,K) at 0x22445c05870>, <(V,C) at 0x22445c05b70>, <(2,P) at 0x22445c068f0>]
+INFO:root:is_flush, colors_count: {'carreau': 2, 'coeur': 3, 'trefle': 1, 'pique': 1}
+INFO:root:is_four_of_a_kind, values_count: {8: 2, 9: 1, 11: 2, 6: 1, 2: 1}
+INFO:root:is_full, values_count: {8: 2, 9: 1, 11: 2, 6: 1, 2: 1}
+INFO:root:is_flush, colors_count: {'carreau': 2, 'coeur': 3, 'trefle': 1, 'pique': 1}
+INFO:root:is_straight, values: [8, 9, 11, 8, 6, 11, 2]
+INFO:root:is_three_of_a_kind, values_count: {8: 2, 9: 1, 11: 2, 6: 1, 2: 1}
+INFO:root:is_two_pairs, values_count: {8: 2, 9: 1, 11: 2, 6: 1, 2: 1}
+INFO:root:get_double_pair, values_count: {8: 2, 9: 1, 11: 2, 6: 1, 2: 1}
+INFO:root:Starting up
+INFO:root:Logging is working
+INFO:root:find_combinaisons, hand: [<(9,P) at 0x1e62c5f6530>, <(7,C) at 0x1e62c5f5cf0>, <(10,T) at 0x1e62c5f6740>, <(2,T) at 0x1e62c9b6f20>, <(9,K) at 0x1e62c5f5750>, <(3,T) at 0x1e62c5f6a70>, <(10,K) at 0x1e62c5f56f0>]
+INFO:root:is_flush, colors_count: {'pique': 1, 'coeur': 1, 'trefle': 3, 'carreau': 2}
+INFO:root:is_four_of_a_kind, values_count: {9: 2, 7: 1, 10: 2, 2: 1, 3: 1}
+INFO:root:is_full, values_count: {9: 2, 7: 1, 10: 2, 2: 1, 3: 1}
+INFO:root:is_flush, colors_count: {'pique': 1, 'coeur': 1, 'trefle': 3, 'carreau': 2}
+INFO:root:is_straight, values: [9, 7, 10, 2, 9, 3, 10]
+INFO:root:is_three_of_a_kind, values_count: {9: 2, 7: 1, 10: 2, 2: 1, 3: 1}
+INFO:root:is_two_pairs, values_count: {9: 2, 7: 1, 10: 2, 2: 1, 3: 1}
+INFO:root:get_double_pair, values_count: {9: 2, 7: 1, 10: 2, 2: 1, 3: 1}
+INFO:root:Starting up
+INFO:root:Logging is working
+INFO:root:find_combinaisons, hand: [<(R,P) at 0x1fcbf745f90>, <(D,P) at 0x1fcbf745ff0>, <(7,T) at 0x1fcbf746e00>, <(4,T) at 0x1fcbf746e30>, <(4,K) at 0x1fcbf745930>, <(7,C) at 0x1fcbf745cf0>, <(4,C) at 0x1fcbf745e10>]
+INFO:root:is_flush, colors_count: {'pique': 2, 'trefle': 2, 'carreau': 1, 'coeur': 2}
+INFO:root:is_four_of_a_kind, values_count: {13: 1, 12: 1, 7: 2, 4: 3}
+INFO:root:is_full, values_count: {13: 1, 12: 1, 7: 2, 4: 3}
+INFO:root:get_full, values_count: {13: 1, 12: 1, 7: 2, 4: 3}

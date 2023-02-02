@@ -51,9 +51,7 @@ def get_flush(colors_count, values, colors):
 
 def get_straight(values):
     logging.info("get_straight, values: %s", values)
-    value = Value(max(values))
-    logging.debug("Max value: %s", value)
-    return (Combinaison.SUITE, value)
+    return (Combinaison.SUITE, Value(is_straight(values)))
 
 
 ''' Returns a tuple containing a straight flush , the color of it and the highest card in the straight flush '''
@@ -65,7 +63,7 @@ def get_straight_flush(colors_count, values):
     flush_color = max(colors_count, key=colors_count.get)
     logging.debug("Flush color: %s", flush_color)
     logging.debug("Values: %s", values)
-    return (Combinaison.SUITE_COULEUR, (Color(flush_color), Value(max(values))))
+    return (Combinaison.SUITE_COULEUR, (Color(flush_color), Value(is_straight(values))))
 
 
 ''' Returns a tuple containg a three of a kind and the two highest cards remaining in the hand'''
@@ -238,7 +236,11 @@ def is_straight(values):
         test = True
         for i in range(j+1, j + 5):
             if i not in values_set:
-                test = False
+                test = 0
         if test:
-            return True
+            if (i + 2 in values_set and i + 1 in values_set):
+                return i+2
+            if (i + 1 in values_set):
+                return i+1
+            return i
     return test

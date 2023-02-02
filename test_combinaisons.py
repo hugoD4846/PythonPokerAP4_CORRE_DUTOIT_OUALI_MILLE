@@ -62,7 +62,13 @@ class TestCombinations(unittest.TestCase):
             Value.CINQ, Color.K), Card(Value.AS, Color.C),
             Card(Value.DIX, Color.C)]
         self.assertEqual(find_combinaisons(
-            hand), (Combinaison.SUITE, (Value.AS)))
+            hand), (Combinaison.SUITE, (Value.CINQ)))
+        hand = [Card(Value.DEUX, Color.K), Card(Value.TROIS, Color.K), Card(Value.QUATRE, Color.T),
+                Card(Value.CINQ, Color.P), Card(
+            Value.SIX, Color.K), Card(Value.SEPT, Color.C),
+            Card(Value.HUIT, Color.C)]
+        self.assertEqual(find_combinaisons(
+            hand), (Combinaison.SUITE, (Value.HUIT)))
 
     def test_find_combinaison_nothing(self):
         hand = [Card(Value.AS, Color.K), Card(Value.VALET, Color.K), Card(Value.SEPT, Color.T),
@@ -235,12 +241,12 @@ class TestCombinations(unittest.TestCase):
     def test_is_straight(self):
         # Test with a valid straight
         values = [2, 3, 4, 5, 6, 10, 11]
-        expected_output = True
+        expected_output = 6
         assert is_straight(values) == expected_output
 
         # Test with a valid Ace-low straight
         values = [14, 5, 4, 3, 2, 8, 9]
-        expected_output = True
+        expected_output = 5
         assert is_straight(values) == expected_output
 
         # Test with less than 5 cards
@@ -260,12 +266,16 @@ class TestCombinations(unittest.TestCase):
 
         # Test with duplicate cards
         values = [7, 8, 9, 10, 11, 4, 13]
-        expected_output = True
+        expected_output = 11
         assert is_straight(values) == expected_output
 
         # Test with duplicate cards
         values = [10, 11, 12, 13, 13, 14, 13]
-        expected_output = True
+        expected_output = 14
+        assert is_straight(values) == expected_output
+
+        values = [2, 3, 4, 5, 6, 7, 8]
+        expected_output = 8
         assert is_straight(values) == expected_output
 
 
