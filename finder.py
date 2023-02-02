@@ -3,6 +3,22 @@ from combinaison import Combinaison
 import collections
 import logging
 
+
+def getHashCodeFromTuple(tuple):
+    tmp = str(tuple[0].value)
+    if not hasattr(tuple[1], '__iter__'):
+        tmp += str(tuple[1].value)
+    else : 
+        for elem in tuple[1] :
+            if(type(elem.value) == int):
+                if(elem.value < 10):
+                    tmp += "0"
+                tmp += str(elem.value)
+    i = len(tmp)
+    for i in range(0, 11 - len(tmp)):
+        tmp += "0"
+    return tmp
+    
 ''' Returns a tuple containing a four of a kind and the highest card remaining in the hand '''
 
 
